@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💘 Valentine 💘</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#ffe6ee;
+  text-align:center;
+  padding:20px;
+}
+
+h1,h2,p{
+  color:#ff2e74;
+}
+
+button{
+  padding:12px 22px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+#yesBtn{
+  background:#ff2e74;
+  color:white;
+  font-size:20px;
+}
+
+#noBtn{
+  background:#999;
+  color:white;
+  margin-left:10px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+img{
+  width:220px;
+  border-radius:15px;
+  margin-top:15px;
+}
+
+.gift{
+  margin:30px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+  <h1>Will you be my Valentine? 💖</h1>
+  <p id="noText"></p>
+  <br>
+  <button id="yesBtn" onclick="goYes()">Yes 💘</button>
+  <button id="noBtn" onclick="growYes()">No 😅</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <h1>I knew it 😌💞</h1>
+  <p>Darling just hold my hands<br>
+     Be my girl, I’ll be your man<br>
+     I see my future in your eyes 💗</p>
+  <button onclick="goGifts()">Next 🎁</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+  <h1>🎁 Choose Your Gifts 🎁</h1>
+
+  <div class="gift">
+    <h2>Gift 1 🧸</h2>
+    <img src="bear1.gif">
+    <p>You are the boss of our relationship 😌</p>
+  </div>
+
+  <div class="gift">
+    <h2>Gift 2 🧸</h2>
+    <img src="bear2.gif">
+    <p>Life without you? Not possible 💕</p>
+  </div>
+
+  <div class="gift">
+    <h2>Gift 3 🔒</h2>
+    <button onclick="unlock()">Open Secret 💝</button>
+    <br><br>
+    <img id="secret" src="us.jpg" style="display:none;">
+  </div>
+</div>
+
+<script>
+let yesSize = 20;
+let noCount = 0;
+
+const texts = [
+  "Are you sure? 🥺",
+  "Think again 😳",
+  "Pleaseee 😭",
+  "Don’t break my heart 💔",
+  "Last chance 😤"
+];
+
+function growYes(){
+  yesSize += 10;
+  document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+  document.getElementById("noText").innerText = texts[noCount % texts.length];
+  noCount++;
+}
+
+function goYes(){
+  showPage("page2");
+}
+
+function goGifts(){
+  showPage("page3");
+}
+
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function unlock(){
+  const pass = prompt("Enter password 💌");
+  if(pass === "forever"){
+    document.getElementById("secret").style.display = "block";
+    alert("This one is only ours 💗");
+  }else{
+    alert("Wrong password 😅");
+  }
+}
+</script>
+
+</body>
+</html>
